@@ -10,7 +10,7 @@ def ceasar(text, shift, direction):
     for letter in text:
         if letter in alphabet:
             position = alphabet.index(letter)
-
+            new_position = 0
             if direction == "encode":
                 new_position = position + shift
             elif direction == "decode":
@@ -23,22 +23,22 @@ def ceasar(text, shift, direction):
 
     print(f"The {direction}d text is {new_text}")
 
-gameover = False
+gameover = True
 
-while gameover == False:
-    direction = input("Type 'encode` to encrypt, type 'decode' to decrypt:\n").lower()
-    text = input("Type your message:\n").lower()
-    shift = int(input("Type the shift number:\n"))
+while gameover:
+    encrypt_decrypt = input("Type 'encode` to encrypt, type 'decode' to decrypt:\n").lower()
+    original_text = input("Type your message:\n").lower()
+    shift_amount = int(input("Type the shift number:\n"))
 
-    ceasar(text, shift, direction)
+    ceasar(text=original_text, shift=shift_amount, direction=encrypt_decrypt)
 
     gameover = input("Do you want to play again? 'yes' or 'no' ").lower()
     if gameover == "no":
-        gameover = True
+        gameover = False
         print("Goodbye")
     elif gameover == "yes":
-        gameover = False
-        ceasar(text, shift, direction)
+        gameover = True
+        ceasar(text=original_text, shift=shift_amount, direction=encrypt_decrypt)
     else:
         print("Invalid input")
-        gameover = False
+        gameover = True
